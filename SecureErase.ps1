@@ -3,7 +3,7 @@
 PowerShell - Secure Erase Script
 ////////////////////////////////
 
-Authors: Yannick Schweizer & Tim de Vries
+Authors: <REDACTED>
 Description: Script capable of securely erasing a given non-boot/non-system drive, done through a quick GUI.
 
 Tools used:
