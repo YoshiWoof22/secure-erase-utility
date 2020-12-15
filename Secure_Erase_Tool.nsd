@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root xmlns:nsd="https://structorizer.fisch.lu" version="3.30-11" preRepeat="until " postFor="to" preReturn="return" postForIn="in" preWhile="while " output="OUTPUT" input="INPUT" preFor="for" preExit="exit" preLeave="leave" ignoreCase="true" preThrow="throw" preForIn="foreach" stepFor="by" author="yanni" created="2020-12-08" changedby="yanni" changed="2020-12-15" origin="Structorizer 3.30-10" text="&#34;Secure Erase Tool&#34;" comment="" color="ffffff" type="program" style="nice">
+	<children>
+		<jump text="&#34;Programm wird gestartet&#34;" comment="" color="80ffff" disabled="0"></jump>
+		<instruction text="&#34;GUI Initialisiation &amp; Drawing&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+		<forever comment="" color="80ffff" disabled="0">
+			<qForever>
+				<alternative text="&#34;Falls: Button &#34;&#34;Get Disks&#34;&#34; gedrückt&#34;" comment="" color="c0c0c0" disabled="0">
+					<qTrue>
+						<instruction text="&#34;Queue Job: Get Disks&#34;" comment="" color="ff80c0" rotated="0" disabled="0"></instruction>
+						<alternative text="&#34;Konnten Disks geholt werden?&#34;" comment="" color="c0c0c0" disabled="0">
+							<qTrue>
+								<instruction text="&#34;Disk-Liste sortieren&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+								<instruction text="&#34;Als Variable &#34;&#34;DiskList&#34;&#34; speichern&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+								<instruction text="&#34;TextBox: $DiskListe anzeigen&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+							</qTrue>
+							<qFalse>
+								<instruction text="&#34;Meldung:&#34;,&#34;Disk existiert nicht!&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+							</qFalse>
+						</alternative>
+					</qTrue>
+					<qFalse>
+						<alternative text="&#34;Falls: Button &#34;&#34;Validate Disk&#34;&#34; gedrückt&#34;" comment="" color="c0c0c0" disabled="0">
+							<qTrue>
+								<alternative text="&#34;Existiert Disk?&#34;" comment="" color="c0c0c0" disabled="0">
+									<qTrue>
+										<alternative text="&#34;Ist Disk C:\?&#34;" comment="" color="c0c0c0" disabled="0">
+											<qTrue>
+												<instruction text="&#34;Set Var/CheckBox:&#34;,&#34;&#34;&#34;Validiert&#34;&#34; -&#62; NEIN&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;Meldung:&#34;,&#34;C:\ kann nicht gelöscht werden!&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+											</qTrue>
+											<qFalse>
+												<instruction text="&#34;Set Var/CheckBox:&#34;,&#34;&#34;&#34;Validiert&#34;&#34; -&#62; JA&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+												<instruction text="&#34;Erase Button: &#34;&#34;Enabled&#34;&#34;&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+											</qFalse>
+										</alternative>
+									</qTrue>
+									<qFalse>
+										<instruction text="&#34;Set Var/CheckBox:&#34;,&#34;&#34;&#34;Validiert&#34;&#34; -&#62; NEIN&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+										<instruction text="&#34;Meldung:&#34;,&#34;Disk existiert nicht!&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+									</qFalse>
+								</alternative>
+							</qTrue>
+							<qFalse>
+								<alternative text="&#34;Falls: Button &#34;&#34;Erase Disk&#34;&#34; gedrückt&#34;" comment="" color="c0c0c0" disabled="0">
+									<qTrue>
+										<alternative text="&#34;Final Confirmation:&#34;,&#34;Wollen sie wirklich Disk &#60;num&#62; löschen?&#34;" comment="" color="c0c0c0" disabled="0">
+											<qTrue>
+												<alternative text="&#34;Ist &#34;&#34;Shutdown nach Erase?&#34;&#34; ausgewählt?&#34;" comment="" color="c0c0c0" disabled="0">
+													<qTrue>
+														<instruction text="&#34;Set Var:&#34;,&#34;&#34;&#34;SystemShutdown&#34;&#34; -&#62; JA&#34;" comment="" color="80ff80" rotated="0" disabled="0"></instruction>
+													</qTrue>
+													<qFalse>
+														<instruction text="&#34;Set Var:&#34;,&#34;&#34;&#34;SystemShutdown&#34;&#34; -&#62; NEIN&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+													</qFalse>
+												</alternative>
+												<alternative text="&#34;Ist &#34;&#34;SystemShutdown&#34;&#34; = JA?&#34;" comment="" color="c0c0c0" disabled="0">
+													<qTrue>
+														<instruction text="&#34;Queue Job:&#34;,&#34;System Shutdown&#34;" comment="" color="ff80c0" rotated="0" disabled="0"></instruction>
+													</qTrue>
+													<qFalse>
+														<instruction text="&#34;/ / /&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+													</qFalse>
+												</alternative>
+												<instruction text="&#34;Queue Job:&#34;,&#34;Disk Erase&#34;" comment="" color="ff80c0" rotated="0" disabled="0"></instruction>
+												<jump text="&#34;EXIT Script&#34;" comment="" color="80ffff" disabled="0"></jump>
+											</qTrue>
+											<qFalse>
+												<instruction text="&#34;Meldung/Abbruch:&#34;,&#34;System abgebrochen&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+											</qFalse>
+										</alternative>
+									</qTrue>
+									<qFalse>
+										<instruction text="&#34;Keine Aktion&#34;" comment="" color="ff8080" rotated="0" disabled="0"></instruction>
+									</qFalse>
+								</alternative>
+							</qFalse>
+						</alternative>
+					</qFalse>
+				</alternative>
+			</qForever>
+		</forever>
+	</children>
+</root>
